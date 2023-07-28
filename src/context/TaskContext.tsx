@@ -1,28 +1,22 @@
+import React, {
+  FunctionComponent,
+  ReactElement,
+  createContext,
+  useState,
+} from 'react';
+import {ITask, ITasksContext} from '../utils/utils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React from 'react';
 
 interface IProps {
-  children: React.ReactElement;
-}
-
-export interface ITask {
-  id: string;
-  title: string;
-}
-
-export interface ITasksContext {
-  tasks: ITask[];
-  addTask(task: ITask): void;
+  children: ReactElement;
 }
 
 const tasksData = '@MyTasks:Tasks';
 
-export const TasksContext = React.createContext<ITasksContext>(
-  {} as ITasksContext,
-);
+export const TasksContext = createContext<ITasksContext>({} as ITasksContext);
 
-export const TasksProvider: React.FunctionComponent<IProps> = ({children}) => {
-  const [data, setData] = React.useState<ITask[]>([]);
+export const TasksProvider: FunctionComponent<IProps> = ({children}) => {
+  const [data, setData] = useState<ITask[]>([]);
 
   React.useEffect(() => {
     async function loadTasks() {
