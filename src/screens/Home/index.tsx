@@ -22,6 +22,7 @@ export const Home = () => {
     };
 
     addTask(data);
+    setNewTask('');
   };
 
   return (
@@ -33,6 +34,7 @@ export const Home = () => {
           placeholderTextColor="#555"
           placeholder="Nova tarefa..."
           style={styles.input}
+          value={newTask}
         />
         <TouchableOpacity
           onPress={handleAddNewTask}
