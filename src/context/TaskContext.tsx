@@ -40,8 +40,14 @@ export const TasksProvider: FunctionComponent<IProps> = ({children}) => {
     }
   };
 
+  const removeTask = async (id: string) => {
+    const newTaskList = data.filter(task => task.id !== id);
+    setData(newTaskList);
+    await AsyncStorage.setItem(tasksData, JSON.stringify(newTaskList));
+  };
+
   return (
-    <TasksContext.Provider value={{tasks: data, addTask}}>
+    <TasksContext.Provider value={{tasks: data, addTask, removeTask}}>
       {children}
     </TasksContext.Provider>
   );

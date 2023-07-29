@@ -6,4 +6,5 @@ export interface ITask {
 export interface ITasksContext {
   tasks: ITask[];
   addTask(task: ITask): void;
+  removeTask(task: string): void;
 }
